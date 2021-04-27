@@ -14,6 +14,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('playlists')->middleware('permission:create playlist')->group(function (){
         Route::get('create', [PlaylistController::class, 'create'])->name('playlists.create');
+        Route::post('create', [PlaylistController::class, 'store']);
+
         Route::get('table', [PlaylistController::class, 'table'])->name('playlists.table');
     });
 });

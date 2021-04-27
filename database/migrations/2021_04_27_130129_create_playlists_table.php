@@ -15,7 +15,7 @@ class CreatePlaylistsTable extends Migration
     {
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('use_id');
+            $table->foreignId('user_id');
             $table->string('thumbnail')->nullable();
             $table->string('name');
             $table->string('slug');
