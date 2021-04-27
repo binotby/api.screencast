@@ -5,16 +5,18 @@
         </header>
         <a href="#" class="block text-gray-200 px-2 py-2">Dashboard</a>
     </div>
-    @if(Auth::user()->can('create playlists'))
+
+    @can('create playlists')
     <div class="mb-8">
         <header class="font-medium px-2 text-gray-400 uppercase text-xs">
             Playlist
         </header>
-        <a href="#" class="block text-gray-200 px-2 py-2">Create</a>
-        <a href="#" class="block text-gray-200 px-2 py-2">Table</a>
+        <a href="{{ route('playlists.create') }}" class="block text-gray-200 px-2 py-2">Create</a>
+        <a href="{{ route('playlists.table') }}" class="block text-gray-200 px-2 py-2">Table</a>
     </div>
-    @endif
-    @if(Auth::user()->can('create tags'))
+    @endcan
+
+    @can('create tags')
         <div class="mb-8">
             <header class="font-medium px-2 text-gray-400 uppercase text-xs">
                 Tags
@@ -22,7 +24,7 @@
             <a href="#" class="block text-gray-200 px-2 py-2">Create</a>
             <a href="#" class="block text-gray-200 px-2 py-2">Table</a>
         </div>
-    @endif
+    @endcan
 
     @can('show users')
         <div class="mb-8">
@@ -35,7 +37,6 @@
     @endcan
 
     <div class="mb-8">
-
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <a href="route('logout')" class="block text-gray-200 px-2 py-2" onclick="event.preventDefault();this.closest('form').submit();">
