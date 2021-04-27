@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Screencast;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PlaylistRequest;
+use App\Models\Screencast\Playlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -12,11 +13,6 @@ class PlaylistController extends Controller
     public function create()
     {
         return view('playlists.create');
-    }
-
-    public function table()
-    {
-        return view('playlists.table');
     }
 
     public function store(PlaylistRequest $request)
@@ -30,5 +26,11 @@ class PlaylistController extends Controller
        ]);
 
        return back();
+    }
+
+    public function table()
+    {
+        $playlists = Auth::user()->playlists()->latest()->paginate(16);
+        return view('playlists.table', compact('playlists'));
     }
 }
