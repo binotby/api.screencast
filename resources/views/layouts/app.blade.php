@@ -20,10 +20,10 @@
 
                 <!-- Page Content -->
                 <main class="w-4/5 p-5">
-                    @if($header)
+                    @isset($header)
                         <h1 class="font-light text-2xl">{{ $header }}</h1>
                         <div class="w-20 bg-blue-600 mb-5 h-1 mt-2 rounded-full"></div>
-                    @endif
+                    @endisset
                     {{ $slot }}
                 </main>
             </div>

@@ -37,6 +37,8 @@ class PlaylistController extends Controller
 
     public function edit(Playlist $playlist)
     {
+        $this->authorize('update', $playlist);
+
         return view('playlists.edit', [
             'playlist' => $playlist,
             'tags' => Tag::get(),
@@ -45,6 +47,8 @@ class PlaylistController extends Controller
 
     public function update(PlaylistRequest $request, Playlist $playlist)
     {
+        $this->authorize('update', $playlist);
+
         if ($request->thumbnail) {
             Storage::delete($playlist->thumbnail);
             $thumbnail = $request->file('thumbnail')->store('images/playlist');
@@ -72,6 +76,8 @@ class PlaylistController extends Controller
 
     public function destroy(Playlist $playlist)
     {
+        $this->authorize('delete', $playlist);
+
         Storage::delete($playlist->thumbnail);
         $playlist->tags()->detach();
         $playlist->delete();
