@@ -25,6 +25,19 @@
                 <x-td>{{ $playlist->created_at->format("d F, Y") }}</x-td>
                 <x-td>
                     <a href="{{ route('playlists.edit', $playlist->slug) }}">Edit</a>
+                    <div x-data="{ modalIsOpen: false }">
+                        <x-modal state="modalIsOpen" x-show="modalIsOpen" title="Are you sure?">
+                            <div class="flex">
+                                <form action="{{ route('playlists.delete', $playlist->slug) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="text-red-500" type="submit">Yes</button>
+                                </form>
+                                <button class="ml-4" @click="modalIsOpen = false">No</button>
+                            </div>
+                        </x-modal>
+                        <button @click="modalIsOpen = true">Delete</button>
+                    </div>
                 </x-td>
             </tr>
             @endforeach
