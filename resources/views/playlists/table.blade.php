@@ -21,7 +21,14 @@
             @foreach($playlists as $playlist)
             <tr>
                 <x-td>{{ $loop->iteration }}</x-td>
-                <x-td>{{ $playlist->name }}</x-td>
+                <x-td>
+                    <div>
+                        {{ $playlist->name }}
+                    </div>
+                    @foreach($playlist->tags as $tag)
+                        <span class="mr-1 text-xs">{{ $tag->name }}</span>
+                    @endforeach
+                </x-td>
                 <x-td>{{ $playlist->created_at->format("d F, Y") }}</x-td>
                 <x-td>
                     <a href="{{ route('playlists.edit', $playlist->slug) }}">Edit</a>
