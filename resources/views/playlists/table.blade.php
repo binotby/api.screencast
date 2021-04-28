@@ -3,6 +3,10 @@
         Playlists
     </x-slot>
 
+    <x-slot name="header">
+        List of all playlist
+    </x-slot>
+
     <x-table>
         <thead>
             <tr>
@@ -20,7 +24,7 @@
                 <x-td>{{ $playlist->name }}</x-td>
                 <x-td>{{ $playlist->created_at->format("d F, Y") }}</x-td>
                 <x-td>
-                    <a href="#">Edit</a>
+                    <a href="{{ route('playlists.edit', $playlist->slug) }}">Edit</a>
                 </x-td>
             </tr>
             @endforeach

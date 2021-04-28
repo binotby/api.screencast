@@ -3,7 +3,11 @@
         Create new playlist
     </x-slot>
 
-    <form action="{{ route('playlists.create') }}" method="post" enctype="multipart/form-data">
+    <x-slot name="header">
+        Create new playlist
+    </x-slot>
+
+    <form action="{{ route('playlists.create') }}" method="post" enctype="multipart/form-data" novalidate>
         @include('playlists._form-control', [
             'submit' => 'Create',
         ])
