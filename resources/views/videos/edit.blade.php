@@ -1,15 +1,15 @@
 <x-app-layout>
     <x-slot name="title">
-        Tags
+        Videos
     </x-slot>
 
     <x-slot name="header">
-        Create a new Tag
+        Video: {{ $video->title }}
     </x-slot>
 
-    <form action="{{ route('tags.edit', $tag->slug) }}" method="post">
+    <form action="{{ route('videos.edit', $video->slug) }}" method="post">
         @method('put')
-        @include('tags._form-control', [
+        @include('videos._form-control', [
             'submit' => 'Save'
         ])
     </form>

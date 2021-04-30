@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
         Route::get('create/into/{playlist:slug}', [VideoController::class, 'create'])->name('videos.create');
         Route::post('create/into/{playlist:slug}', [VideoController::class, 'store']);
         Route::get('{video:slug}/edit', [VideoController::class, 'edit'])->name('videos.edit');
+        Route::put('{video:slug}/edit', [VideoController::class, 'update']);
         Route::delete('{video:slug}/delete', [VideoController::class, 'destroy'])->name('videos.delete');
     });
 

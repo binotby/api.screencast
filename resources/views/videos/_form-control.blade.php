@@ -39,7 +39,7 @@
 <!-- Intro -->
 <div class="mb-6">
     <x-label for="intro" :value="__('Introduction?')" />
-    <x-input id="intro" class="block mt-1" type="checkbox" name="intro" :value="old('intro') ?? $video->intro" required />
+    <x-input id="intro" class="block mt-1" type="checkbox" name="intro" :value="old('intro') ?? $video->intro" />
     @error('intro')
         <div class="text-red-500 mt-2">{{ $message }}</div>
     @enderror

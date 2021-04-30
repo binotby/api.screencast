@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="title">
-        Create new playlist
+        Playlists
     </x-slot>
 
     <x-slot name="header">
-        Create new playlist
+        Playlist: {{ $playlist->name }}
     </x-slot>
 
     <div class="w-full lg:w-1/2">

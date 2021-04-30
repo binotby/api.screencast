@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Screencast;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VideoRequest;
 use App\Models\Screencast\Playlist;
 use App\Models\Screencast\Video;
 use Illuminate\Http\Request;
@@ -31,16 +32,11 @@ class VideoController extends Controller
         ]);
     }
 
-    public function store(Playlist $playlist, Request $request)
+    public function store(Playlist $playlist, VideoRequest $request)
     {
         $this->authorize('update', $playlist);
 
-        $attr = request()->validate([
-            'title' => 'required',
-            'episode' => 'required',
-            'runtime' => 'required',
-            'unique_video_id' => 'required',
-        ]);
+        $attr = request()->all();
 
         $attr['slug'] = Str::slug($request->title);
         $attr['intro'] = $request->intro ? true : false;
@@ -54,14 +50,25 @@ class VideoController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Video $video)
     {
-        //
+        $this->authorize('update', $video->playlist);
+
+        return view('videos.edit', [
+            'video' => $video,
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Video $video, VideoRequest $request)
     {
-        //
+        $playlist = $video->playlist;
+        $this->authorize('update', $playlist);
+        $attr = request()->all();
+
+        $attr['intro'] = $request->intro ? true : false;
+        $video->update($attr);
+
+        return redirect(route('videos.table', $playlist->slug));
     }
 
     public function destroy($id)

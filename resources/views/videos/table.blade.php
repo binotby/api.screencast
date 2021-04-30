@@ -12,6 +12,7 @@
             <tr>
                 <x-th>#</x-th>
                 <x-th>Title</x-th>
+                <x-th>Intro?</x-th>
                 @can('delete videos')
                     <x-th>Action</x-th>
                 @endcan
@@ -21,9 +22,8 @@
             @foreach($videos as $video)
             <tr>
                 <x-td>{{ $loop->iteration }}</x-td>
-                <x-td>
-                    {{ $video->title }}
-                </x-td>
+                <x-td>{{ $video->title }}</x-td>
+                <x-td>{{ $video->intro ? 'Yes' : 'No' }}</x-td>
                 @can('delete videos')
                 <x-td>
                     <a href="{{ route('videos.edit', $video->slug) }}">Edit</a>
