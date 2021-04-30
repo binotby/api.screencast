@@ -23,7 +23,9 @@
                 <x-td>{{ $loop->iteration }}</x-td>
                 <x-td>
                     <div>
-                        {{ $playlist->name }}
+                        <a href="{{ route('videos.table', $playlist->slug) }}">
+                            {{ $playlist->name }}
+                        </a>
                     </div>
                     @foreach($playlist->tags as $tag)
                         <span class="mr-1 text-xs">{{ $tag->name }}</span>

@@ -10,9 +10,14 @@ use Illuminate\Support\Str;
 
 class VideoController extends Controller
 {
-    public function index()
+    public function table(Playlist $playlist)
     {
-        //
+        $this->authorize('update', $playlist);
+
+        return view('videos.table', [
+            'playlist' => $playlist,
+            'videos' => $playlist->videos()->orderBy('episode')->paginate(16),
+        ]);
     }
 
     
