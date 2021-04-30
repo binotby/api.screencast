@@ -63,8 +63,11 @@ class TagController extends Controller
         return redirect(route('tags.table'));
     }
 
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->playlists()->detach();
+        $tag->delete();
+
+        return redirect(route('tags.table'));
     }
 }
