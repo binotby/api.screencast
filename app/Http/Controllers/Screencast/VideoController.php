@@ -71,8 +71,11 @@ class VideoController extends Controller
         return redirect(route('videos.table', $playlist->slug));
     }
 
-    public function destroy($id)
+    public function destroy(Video $video)
     {
-        //
+        $playlist = $video->playlist;
+        $this->authorize('update', $playlist);
+        $video->delete();
+        return redirect(route('videos.table', $playlist->slug));
     }
 }
