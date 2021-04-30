@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
         Route::get('table', [TagController::class, 'table'])->name('tags.table');
         Route::get('create', [TagController::class, 'create'])->name('tags.create');
         Route::post('create', [TagController::class, 'store']);
+        Route::get('{tag:slug}/edit', [TagController::class, 'edit'])->name('tags.edit');
+        Route::put('{tag:slug}/edit', [TagController::class, 'update']);
     });
 });
 

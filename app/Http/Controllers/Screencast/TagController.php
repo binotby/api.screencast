@@ -27,10 +27,10 @@ class TagController extends Controller
     {
         return view('tags.create', [
             'tag' => new Tag()
-        ]);
+        ]); 
     }
 
-    
+
     public function store(TagRequest $request)
     {
         Tag::create([
@@ -46,14 +46,21 @@ class TagController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Tag $tag)
     {
-        //
+        return view('tags.edit', [
+            'tag' => $tag,
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(TagRequest $request, Tag $tag)
     {
-        //
+        $tag->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ]);
+
+        return redirect(route('tags.table'));
     }
 
     public function destroy($id)

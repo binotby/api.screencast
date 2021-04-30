@@ -24,7 +24,7 @@
                 <x-td>{{ $tag->name }}</x-td>
                 <x-td>{{ $tag->playlists_count }}</x-td>
                 <x-td>
-                    <a href="{{ route('playlists.edit', $tag->slug) }}">Edit</a>
+                    <a href="{{ route('tags.edit', $tag->slug) }}">Edit</a>
                     <div x-data="{ modalIsOpen: false }">
                         <x-modal state="modalIsOpen" x-show="modalIsOpen" title="Are you sure?">
                             <div class="flex">
