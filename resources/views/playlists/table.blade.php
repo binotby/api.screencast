@@ -31,6 +31,7 @@
                 </x-td>
                 <x-td>{{ $playlist->created_at->format("d F, Y") }}</x-td>
                 <x-td>
+                    <a href="{{ route('videos.create', $playlist->slug) }}">Add video</a>
                     <a href="{{ route('playlists.edit', $playlist->slug) }}">Edit</a>
                     <div x-data="{ modalIsOpen: false }">
                         <x-modal state="modalIsOpen" x-show="modalIsOpen" title="Are you sure?">

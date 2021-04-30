@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Screencast\PlaylistController;
-use App\Http\Controllers\Screencast\TagController;
+use App\Http\Controllers\Screencast\{PlaylistController, TagController, VideoController};
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,6 +19,11 @@ Route::middleware('auth')->group(function () {
         Route::get('{playlist:slug}/edit', [PlaylistController::class, 'edit'])->name('playlists.edit');
         Route::put('{playlist:slug}/edit', [PlaylistController::class, 'update']);
         Route::delete('{playlist:slug}/delete', [PlaylistController::class, 'destroy'])->name('playlists.delete');
+    });
+
+    Route::prefix('videos')->middleware('permission:create playlists')->group(function (){
+        Route::get('create/into/{playlist:slug}', [VideoController::class, 'create'])->name('videos.create');
+        Route::post('create/into/{playlist:slug}', [VideoController::class, 'store']);
     });
 
     Route::prefix('tags')->group(function(){
